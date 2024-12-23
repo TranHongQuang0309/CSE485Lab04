@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Book;
 class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    public function home()
+    {
+        return view('home');  
+
+    }
     public function index()
     {
         //
+        $books = Book::paginate(10); 
+        return view('books.index', ['books' => $books]);
     }
 
     /**
@@ -20,6 +27,8 @@ class BookController extends Controller
     public function create()
     {
         //
+         return view('books.create');
+
     }
 
     /**
@@ -28,6 +37,20 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'year' => 'required|integer',
+            'quantity' => 'required|integer',
+        ]);
+
+        // Lưu dữ liệu
+        Book::create($validated);
+
+        // Quay lại trang danh sách sách
+        return redirect()->route('books.index')->with('success', 'Sách đã được thêm thành công!');
+
     }
 
     /**
@@ -44,6 +67,8 @@ class BookController extends Controller
     public function edit(string $id)
     {
         //
+        $book = Book::findOrFail($id);
+       return view('books.edit' , ['book' => $book]);
     }
 
     /**
@@ -52,6 +77,20 @@ class BookController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'year' => 'required|integer',
+            'quantity' => 'required|integer',
+        ]);
+
+        // Tìm sách theo ID và cập nhật
+        $book = Book::findOrFail($id);
+        $book->update($validated);
+
+        // Quay lại trang danh sách sách
+        return redirect()->route('books.index');
     }
 
     /**
@@ -60,5 +99,9 @@ class BookController extends Controller
     public function destroy(string $id)
     {
         //
+    $book = Book::findOrFail($id);
+    // Xóa sách
+    $book->delete();
+    return redirect()->route('books.index')->with('success', 'Sách đã được xóa thành công.');
     }
 }

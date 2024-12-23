@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use resources\views\Home;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\BookController;
+//home
+Route::get('/', [BookController::class, 'home'])->name('home');
+// danh sach book index
+Route::resource('books', BookController::class);
