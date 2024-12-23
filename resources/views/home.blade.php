@@ -16,6 +16,7 @@
         <p>Trang chủ của ứng dụng quản lý thư viện.</p>
 
         <a href="{{ route('books.index') }}">Xem Sách</a>
+        <a href="{{ route('readers.index') }}">Quản lý độc Giả</a>
     </main>
 
     <footer>

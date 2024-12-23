@@ -8,7 +8,7 @@ class Reader extends Model
 {
     //
     public $timestamps = false;
-    protected $filltable =['name', 'birthday', 'address', 'phone'];
+    protected $fillable =['name', 'birthday', 'address', 'phone'];
 
     public function borrows()
     {
