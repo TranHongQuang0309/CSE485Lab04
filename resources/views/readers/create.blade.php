@@ -1,4 +1,3 @@
-<!-- resources/views/readers/create.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +9,6 @@
 <body>
     <div class="container my-5">
         <h1>Thêm Độc Giả Mới</h1>
-
-        <!-- Form thêm độc giả -->
         <form action="{{ route('readers.store') }}" method="POST">
             @csrf
             <div class="form-group mb-3">

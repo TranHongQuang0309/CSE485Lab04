@@ -15,6 +15,7 @@ class Borrow extends Model
         'return_date',
         'status'
     ];
+    protected $dates = ['borrow_date', 'return_date'];
 
     public function reader()
     {

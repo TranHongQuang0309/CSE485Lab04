@@ -1,3 +1,8 @@
+@extends('layout.app')
+
+@section('title', 'Danh sách Sách')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +13,8 @@
 </head>
 <body>
     <div class="container my-5">
-        <!-- Nút quay lại -->
         <a href="{{ route('home') }}" class="btn btn-success mb-3" style="float: left;">Quay lại</a>
-
-        <!-- Nút Thêm sách -->
         <a href="{{ route('books.create') }}" class="btn btn-success mb-3" style="float: right;">Thêm Sách</a>
-
-        <!-- Bảng danh sách sách -->
          <h1 class="text-center">Danh sách</h1>
         <table class="table table-bordered">
             <thead>
@@ -62,3 +62,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>  
+@endsection

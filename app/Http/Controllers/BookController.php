@@ -45,10 +45,8 @@ class BookController extends Controller
             'quantity' => 'required|integer',
         ]);
 
-        // Lưu dữ liệu
+       
         Book::create($validated);
-
-        // Quay lại trang danh sách sách
         return redirect()->route('books.index')->with('success', 'Sách đã được thêm thành công!');
 
     }
